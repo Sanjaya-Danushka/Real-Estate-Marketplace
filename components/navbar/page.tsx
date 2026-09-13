@@ -8,7 +8,7 @@ interface NavbarProps {
   variant: "transparent" | "solid"
 }
 
-const navLinks = ["Home", "Properties", "MarketPlace"]
+export const navLinks = ["Home", "Properties", "MarketPlace"]
 const Navbar = ({ variant = "transparent" }: NavbarProps) => {
   const [Open, setOpen] = useState(false)
   const isTransparent = variant === "transparent"
@@ -16,7 +16,7 @@ const Navbar = ({ variant = "transparent" }: NavbarProps) => {
     <section
       className={`top-0 left-0 z-50 w-full ${isTransparent ? "absolute" : "sticky border-b border-black/5 bg-card"}`}
     >
-      <div className="lg:px12 mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <nav
           className={`flex h-20 items-center justify-between ${isTransparent ? "mt-6 rounded-3xl border border-white/10 bg-white/5 px-6 backdrop-blur-2xl" : "px-0"} `}
         >
@@ -43,12 +43,12 @@ const Navbar = ({ variant = "transparent" }: NavbarProps) => {
           </div>
           {/* desktop buttons */}
           <div className="hidden items-center gap-4 lg:flex">
-            <Button className="color-primary rounded-full px-6 font-medium text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+            <Button className="rounded-full bg-primary px-6 font-medium text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
               Login
             </Button>
             <Button
               variant="outline"
-              className="text-primary-foreground rounded-full bg-primary px-6 font-medium text-white/80 shadow-sm transition hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-md"
+              className="rounded-full bg-primary px-6 font-medium text-white/80 shadow-sm transition hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-md"
             >
               <Home className="mr-2 size-4" />
               Add property
@@ -78,12 +78,12 @@ const Navbar = ({ variant = "transparent" }: NavbarProps) => {
                 </Link>
               ))}
               <div className="mt-4 flex flex-col gap-3">
-                <Button className="color-primary rounded-full px-6 font-medium text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+                <Button className="rounded-full bg-primary px-6 font-medium text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
                   Login
                 </Button>
                 <Button
                   variant="outline"
-                  className="text-primary-foreground rounded-full bg-primary px-6 font-medium text-white/80 shadow-sm transition hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-md"
+                  className="rounded-full bg-primary px-6 font-medium text-white/80 shadow-sm transition hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-md"
                 >
                   <Home className="mr-2 size-4" />
                   Add property
