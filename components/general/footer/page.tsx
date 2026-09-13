@@ -13,17 +13,20 @@ const Footer = () => {
             Estate
           </span>
         </Link>
-        <div className="hidden items-center gap-8 lg:flex">
+        <div className="flex items-center gap-8">
           {navLinks.map((item) => (
             <Link
               key={item}
               href={item === "Home" ? "/" : `${item.toLowerCase()}`}
-              className={`text-sm font-medium text-text/70 transition hover:text-primary`}
+              className="text-sm font-medium text-text/70 transition hover:text-primary"
             >
               {item}
             </Link>
           ))}
         </div>
+        <p className="text-sm text-text/60">
+          © 2023 RealEstate, Inc. All rights reserved.
+        </p>
       </div>
     </div>
   )
