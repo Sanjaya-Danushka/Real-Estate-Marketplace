@@ -1,4 +1,6 @@
 # Real Estate Marketplace
+<img width="1904" height="884" alt="Screenshot_20260914_171718" src="https://github.com/user-attachments/assets/5294a7d2-4b8c-4c36-a6a6-9e3cdfa9a3c7" />
+
 
 A modern full-stack real estate marketplace built with **Next.js 16 (App Router)**, **React 19**, **Tailwind CSS v4**, **shadcn/ui** (`@base-ui/react`), **Clerk** for authentication, and **Prisma 7 + Prisma Postgres** for data.
 
