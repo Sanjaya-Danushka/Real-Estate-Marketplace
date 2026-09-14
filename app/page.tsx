@@ -1,5 +1,10 @@
-import RecentProperties from "@/components/home/recentProperties/page"
+import CategoriesSection from "@/components/home/categoriesSection/page"
+import CtaBanner from "@/components/home/ctaBanner/page"
+import FeaturedSection from "@/components/home/featuredSection/page"
+import HowItWorksSection from "@/components/home/howItWorksSection/page"
+import LatestPropertiesSection from "@/components/home/latestPropertiesSection/page"
 import SearchBox from "@/components/home/searchbox/page"
+import StatsSection from "@/components/home/statsSection/page"
 import FrontendLayout from "@/components/layout/frontendLayout"
 import Navbar from "@/components/navbar/page"
 import React from "react"
@@ -20,7 +25,6 @@ const page = () => {
         {/* content */}
         <div className="relative z-10 w-full">
           <div className="mx-auto max-w-7xl px-6 lg:px-12">
-            {/* badge */}
             <div className="max-w-3xl">
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-4 backdrop-blur-xl">
                 <div className="h-2 w-2 rounded-full bg-primary" />
@@ -28,20 +32,24 @@ const page = () => {
                   Premium Real Estate Marketplace
                 </span>
               </div>
-              {/* heading */}
               <h2 className="text-4xl leading-tight font-bold text-white md:text-6xl lg:text-7xl">
                 Find The Perfect Place To Call Home
               </h2>
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/70">
-                Dicover Luxury apartments, modern homes,and premium properties
-                in the best location around the world
+                Discover luxury apartments, modern homes, and premium
+                properties in the best locations around the world.
               </p>
               <SearchBox />
             </div>
           </div>
         </div>
       </section>
-      <RecentProperties />
+      <StatsSection />
+      <CategoriesSection />
+      <LatestPropertiesSection />
+      <FeaturedSection />
+      <HowItWorksSection />
+      <CtaBanner />
     </FrontendLayout>
   )
 }

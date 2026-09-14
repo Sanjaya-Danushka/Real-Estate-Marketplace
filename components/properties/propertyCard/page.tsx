@@ -11,7 +11,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
   return (
     <Link
       href={`/property/${property.id}`}
-      className="group relative h-125 overflow-hidden rounded-4xl"
+      className="group relative block h-125 overflow-hidden rounded-4xl"
     >
       <div className="relative h-full w-full">
         <Image
@@ -23,14 +23,20 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
         {/* dark overlay */}
         <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent" />
 
-        {/* top badge */}
-        <div className="absolute top-5 left-5 z-20 rounded-full bg-white/80 px-4 py-2 text-sm">
-          {property.status}
+        {/* top badges */}
+        <div className="absolute top-5 right-5 left-5 z-20 flex items-center justify-between gap-3">
+          <span className="shrink-0 rounded-full bg-white/80 px-4 py-2 text-sm font-medium text-text">
+            {property.status}
+          </span>
+          <span className="max-w-[55%] shrink truncate rounded-full bg-black/40 px-4 py-2 text-sm font-medium text-white backdrop-blur-md">
+            {property.type}
+          </span>
         </div>
-        {/* content card*/}
+
+        {/* content card */}
         <div className="absolute right-5 bottom-5 left-5 z-20 rounded-[28px] border border-white/10 bg-white/10 p-5 backdrop-blur-2xl">
           <div className="flex items-start justify-between gap-4">
-            <div>
+            <div className="min-w-0">
               {property.status === "For Sale" ? (
                 <h3 className="flex items-center text-2xl font-bold text-white">
                   ${property.price.toLocaleString()}
@@ -41,20 +47,16 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
                   <span className="ml-2 text-sm font-medium">/mo</span>
                 </h3>
               )}
-              <p className="mt-1 text-sm font-medium text-white">
+              <p className="mt-1 truncate text-sm font-medium text-white/80">
                 {property.location}
               </p>
             </div>
-            <div className="rounded-xl bg-white/10 px-2 py-2 text-sm text-amber-50">
-              {property.type}
-            </div>
           </div>
-          <h2 className="mt-5 text-2xl font-bold text-white">
+          <h2 className="mt-5 truncate text-2xl font-bold text-white">
             {property.title}
           </h2>
 
           {/* features */}
-
           <div className="mt-5 flex flex-wrap gap-3 border-t border-white/10 pt-5 text-amber-50">
             <div className="rounded-full bg-white/10 px-4 py-2 text-sm">
               {property.bedrooms} Beds
