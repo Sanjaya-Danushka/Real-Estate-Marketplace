@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 import React, { type ChangeEvent, useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
@@ -26,8 +27,8 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { type PropertyTypes } from "@/constants/dummyProperty"
-import { nextPropertyId, saveProperty } from "@/lib/propertyStore"
+import { type Property } from "@prisma/client"
+import { savePropertyAction } from "@/lib/actions"
 import PropertyCard from "@/components/properties/propertyCard/page"
 
 const Steps = {
@@ -72,7 +73,7 @@ interface PropertyFormState {
 }
 
 interface PropertyFormCardProps {
-  onSaved?: (property: PropertyTypes) => void
+  onSaved?: (property: Property) => void
   onClose?: () => void
 }
 
@@ -86,9 +87,10 @@ const stepTitles = [
 ]
 
 const PropertyFormCard = ({ onSaved, onClose }: PropertyFormCardProps) => {
+  const router = useRouter()
   const [step, setStep] = useState<number>(Steps.TYPE)
   const [loading, setLoading] = useState(false)
-  const [saved, setSaved] = useState<PropertyTypes | null>(null)
+  const [saved, setSaved] = useState<Property | null>(null)
   const [form, setForm] = useState<PropertyFormState>({
     type: "",
     status: "",
@@ -129,11 +131,10 @@ const PropertyFormCard = ({ onSaved, onClose }: PropertyFormCardProps) => {
     }
   }
 
-  const createListing = () => {
+  const createListing = async () => {
     if (!form.type || !form.status) return
     setLoading(true)
-    const property: PropertyTypes = {
-      id: nextPropertyId(),
+    const property = {
       title: form.title,
       location: form.location,
       price: Number(form.price),
@@ -146,12 +147,14 @@ const PropertyFormCard = ({ onSaved, onClose }: PropertyFormCardProps) => {
       image: form.image,
       description: form.description,
     }
-    setTimeout(() => {
-      saveProperty(property)
-      setSaved(property)
+    try {
+      const saved = await savePropertyAction(property)
+      setSaved(saved)
+      onSaved?.(saved)
+      router.refresh()
+    } finally {
       setLoading(false)
-      onSaved?.(property)
-    }, 400)
+    }
   }
 
   const resetForm = () => {

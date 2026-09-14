@@ -1,10 +1,10 @@
-import { PropertyTypes } from "@/constants/dummyProperty"
+import { type Property } from "@prisma/client"
 import Image from "next/image"
 import Link from "next/link"
 import React from "react"
 
 interface PropertyCardProps {
-  property: PropertyTypes
+  property: Property
 }
 
 const PropertyCard = ({ property }: PropertyCardProps) => {
