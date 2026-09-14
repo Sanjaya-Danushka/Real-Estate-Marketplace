@@ -3,6 +3,7 @@ import Link from "next/link"
 import React, { useState } from "react"
 import { Button } from "../ui/button"
 import { Home, Menu, X } from "lucide-react"
+import { SignInButton, SignUpButton, useAuth, UserButton } from "@clerk/nextjs"
 
 interface NavbarProps {
   variant: "transparent" | "solid"
@@ -11,6 +12,7 @@ interface NavbarProps {
 export const navLinks = ["Home", "Properties", "MarketPlace"]
 const Navbar = ({ variant = "transparent" }: NavbarProps) => {
   const [Open, setOpen] = useState(false)
+  const { isLoaded, isSignedIn } = useAuth()
   const isTransparent = variant === "transparent"
   return (
     <section
@@ -43,16 +45,35 @@ const Navbar = ({ variant = "transparent" }: NavbarProps) => {
           </div>
           {/* desktop buttons */}
           <div className="hidden items-center gap-4 lg:flex">
-            <Button className="rounded-full bg-primary px-6 font-medium text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
-              Login
-            </Button>
-            <Button
-              variant="outline"
-              className="rounded-full bg-primary px-6 font-medium text-white/80 shadow-sm transition hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-md"
-            >
-              <Home className="mr-2 size-4" />
-              Add property
-            </Button>
+            {isLoaded && isSignedIn ? (
+              <>
+                <UserButton />
+
+                <Button
+                  variant="outline"
+                  className="rounded-full bg-primary px-6 font-medium text-white/80 shadow-sm transition hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-md"
+                >
+                  <Home className="mr-2 size-4" />
+                  Add property
+                </Button>
+              </>
+            ) : (
+              <>
+                <SignInButton>
+                  <Button className="rounded-full bg-primary px-6 font-medium text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+                    Login
+                  </Button>
+                </SignInButton>
+                <SignUpButton>
+                  <Button
+                    variant="outline"
+                    className={`rounded-full px-6 font-medium transition hover:-translate-y-0.5 hover:shadow-md ${isTransparent ? "border-white/20 bg-white/5 text-white hover:bg-white/10" : "bg-transparent text-text"}`}
+                  >
+                    Sign up
+                  </Button>
+                </SignUpButton>
+              </>
+            )}
           </div>
           {/* mobile menu button */}
           <Button
@@ -78,16 +99,39 @@ const Navbar = ({ variant = "transparent" }: NavbarProps) => {
                 </Link>
               ))}
               <div className="mt-4 flex flex-col gap-3">
-                <Button className="rounded-full bg-primary px-6 font-medium text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
-                  Login
-                </Button>
-                <Button
-                  variant="outline"
-                  className="rounded-full bg-primary px-6 font-medium text-white/80 shadow-sm transition hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-md"
-                >
-                  <Home className="mr-2 size-4" />
-                  Add property
-                </Button>
+                {isLoaded && isSignedIn ? (
+                  <>
+                    <div className="flex items-center gap-3">
+                      <UserButton />
+                      <span className={isTransparent ? "text-white" : "text-text"}>
+                        Account
+                      </span>
+                    </div>
+                    <Button
+                      variant="outline"
+                      className="rounded-full bg-primary px-6 font-medium text-white/80 shadow-sm transition hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-md"
+                    >
+                      <Home className="mr-2 size-4" />
+                      Add property
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <SignInButton>
+                      <Button className="w-full rounded-full bg-primary px-6 font-medium text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+                        Login
+                      </Button>
+                    </SignInButton>
+                    <SignUpButton>
+                      <Button
+                        variant="outline"
+                        className={`w-full rounded-full px-6 font-medium transition hover:-translate-y-0.5 hover:shadow-md ${isTransparent ? "border-white/20 bg-white/5 text-white hover:bg-white/10" : "bg-transparent text-text"}`}
+                      >
+                        Sign up
+                      </Button>
+                    </SignUpButton>
+                  </>
+                )}
               </div>
             </div>
           </div>

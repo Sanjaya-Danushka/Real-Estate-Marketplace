@@ -1,3 +1,4 @@
+import { ClerkProvider } from "@clerk/nextjs"
 import { Geist, Geist_Mono, Poppins } from "next/font/google"
 
 import "./globals.css"
@@ -40,7 +41,9 @@ export default function RootLayout({
       )}
     >
       <body className="flex min-h-full flex-col bg-background">
-        <ThemeProvider>{children}</ThemeProvider>
+        <ClerkProvider>
+          <ThemeProvider>{children}</ThemeProvider>
+        </ClerkProvider>
       </body>
     </html>
   )
