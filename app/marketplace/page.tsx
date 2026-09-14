@@ -3,8 +3,7 @@ import FrontendLayout from "../../components/layout/frontendLayout"
 import Navbar from "@/components/navbar/page"
 import { Button } from "@/components/ui/button"
 import { SlidersHorizontal } from "lucide-react"
-import properties from "@/constants/dummyProperty"
-import PropertyCard from "@/components/properties/propertyCard/page"
+import PropertyGrid from "@/components/properties/propertyGrid/page"
 
 const MarketPlace = () => {
   return (
@@ -18,11 +17,7 @@ const MarketPlace = () => {
             Filter
           </Button>
         </div>
-        <div className="my-6 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-          {properties.map((property) => (
-            <PropertyCard key={property.id} property={property} />
-          ))}
-        </div>
+        <PropertyGrid />
       </div>
     </FrontendLayout>
   )

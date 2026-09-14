@@ -1,5 +1,4 @@
-import PropertyCard from "@/components/properties/propertyCard/page"
-import properties from "@/constants/dummyProperty"
+import PropertyGrid from "@/components/properties/propertyGrid/page"
 import React from "react"
 
 const RecentProperties = () => {
@@ -22,11 +21,7 @@ const RecentProperties = () => {
         </div>
 
         {/* properties grid */}
-        <div className="my-6 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-          {properties.map((property) => (
-            <PropertyCard key={property.id} property={property} />
-          ))}
-        </div>
+        <PropertyGrid />
       </div>
     </section>
   )

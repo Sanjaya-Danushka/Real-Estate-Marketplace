@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Poppins } from "next/font/google"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { AddPropertyProvider } from "@/components/properties/addPropertyModal/page"
 import { cn } from "@/lib/utils"
 import { Metadata } from "next"
 
@@ -42,7 +43,9 @@ export default function RootLayout({
     >
       <body className="flex min-h-full flex-col bg-background">
         <ClerkProvider>
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider>
+            <AddPropertyProvider>{children}</AddPropertyProvider>
+          </ThemeProvider>
         </ClerkProvider>
       </body>
     </html>
